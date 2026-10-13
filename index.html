@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ZAMPA'S GYM Coach</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#12141a">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ZAMPA'S Coach">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+:root{--bg:#12141a;--card:#1c202a;--line:#2d3342;--txt:#eef1f6;--mut:#8b94a8;--acc:#ff6a2b;--ok:#3ecf8e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f2f4f8;--card:#fff;--line:#d5dae5;--txt:#161a22;--mut:#667085}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;font-size:18px}
+header{display:flex;gap:12px;align-items:center;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--line);flex-wrap:wrap}
+h1{font-size:22px;margin:0 8px 0 0;color:var(--acc);letter-spacing:.5px}
+input,button{font:inherit;color:inherit}
+input{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+input:focus{outline:2px solid var(--acc)}
+button{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 16px;cursor:pointer;min-height:46px}
+button:active{transform:scale(.97)}
+button.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+#ath{width:200px;font-weight:700;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);font-size:18px;min-height:46px}
+.nav{display:flex;gap:8px;align-items:center}
+#lbl{min-width:190px;text-align:center;font-weight:700;text-transform:capitalize}
+.sp{flex:1}
+main{flex:1;overflow:auto;padding:14px 16px 90px}
+.cols{display:flex;gap:14px;align-items:flex-start;overflow-x:auto;padding-bottom:10px}
+.g{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;min-width:400px;width:400px;flex:none}
+.g .t{width:100%;font-size:20px;font-weight:800;color:var(--acc);background:transparent;border:none;border-bottom:2px solid var(--line);border-radius:0;padding:6px 2px;margin-bottom:8px}
+.e{display:grid;grid-template-columns:repeat(4,1fr) 40px;gap:6px;align-items:end;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.e label{font-size:11px;color:var(--mut);text-transform:uppercase}
+.nmw{grid-column:1/-1;display:flex;gap:6px;align-items:flex-start}.nmw textarea{flex:1;resize:none;overflow:hidden;font-size:18px;font-weight:600;line-height:1.25}.pr{color:var(--ok);font-weight:800;white-space:nowrap;padding-top:8px}.sel{-webkit-appearance:none;appearance:none;text-align:center;text-align-last:center;padding:0;width:46px;min-height:42px;border-radius:10px;background:var(--bg);color:var(--txt);border:1px solid var(--line);font-size:18px}
+.e input{padding:8px 4px;text-align:center;width:100%;font-size:18px}.e textarea{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;color:var(--txt);font-family:inherit}.e textarea:focus{outline:2px solid var(--acc)}
+#tm{position:fixed;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 8px;box-shadow:0 4px 16px #0006}#tt{font-variant-numeric:tabular-nums;font-size:26px;font-weight:800;min-width:76px;text-align:center}#tm.run #tt{color:var(--acc)}#tm.end #tt{color:var(--ok)}#tm button{min-height:40px;padding:6px 12px}
+.x{padding:0;min-height:34px;color:var(--mut)}
+.add{width:100%;margin-top:4px;border-style:dashed;color:var(--mut)}
+.vol{font-size:13px;color:var(--mut);margin-top:8px;text-align:right}
+.newg{min-width:200px;width:200px;height:120px;border-style:dashed;color:var(--mut);font-size:20px}
+.empty{text-align:center;color:var(--mut);margin-top:60px;font-size:22px}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.d{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;min-height:200px;cursor:pointer}
+.d.tod{border-color:var(--acc)}
+.d h3{margin:0 0 6px;font-size:15px;text-transform:capitalize}
+.d .tag{display:inline-block;background:var(--bg);border-radius:8px;padding:2px 8px;margin:2px 2px 0 0;font-size:14px}
+.d small{display:block;color:var(--mut);margin-top:8px;font-size:13px}
+.month{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.mh{text-align:center;color:var(--mut);font-size:14px;text-transform:uppercase}
+.m{background:var(--card);border:1px solid var(--line);border-radius:10px;min-height:68px;padding:6px;cursor:pointer;font-size:15px}
+.m.on{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
+.m b{color:var(--ok);display:block;font-size:12px;margin-top:4px}
+.m.z{visibility:hidden}
+.stats{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.st{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 16px}
+.st b{display:block;font-size:24px;color:var(--acc)}
+.st span{font-size:13px;color:var(--mut)}
+@media(max-width:700px){body{font-size:16px}header{gap:8px;padding:8px 10px}h1{font-size:18px;width:100%}#ath{width:100%}.nav{width:100%;justify-content:space-between}#lbl{min-width:0;flex:1}header>button{flex:1;padding:8px 6px;min-height:42px}.sp{display:none}main{padding:10px 10px 90px}.cols{flex-direction:column;overflow-x:visible}.g,.newg{width:100%;min-width:0}.newg{height:70px}.week{grid-template-columns:1fr 1fr}.d{min-height:120px}.m{min-height:52px;padding:3px;font-size:13px}.m b{display:none}.e{gap:4px;grid-template-columns:repeat(4,1fr) 34px}.e input{font-size:16px;padding:8px 2px}.e label{font-size:10px}#tm{left:10px;right:10px;justify-content:space-between;padding:6px}#tt{font-size:22px;min-width:60px}#tm button{padding:6px 8px}}
+#lg,#na{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+#lg[hidden],#na[hidden]{display:none}
+#who{font-weight:700;color:var(--acc);white-space:nowrap}
+.lgc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;width:380px;max-width:100%;display:flex;flex-direction:column;gap:12px}
+.lgc h2{margin:0;color:var(--acc)}.lgc p{margin:0;color:var(--mut);font-size:15px}#lge{color:#ff6b6b;min-height:20px;font-size:15px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🏋️ ZAMPA'S GYM Coach</h1>
+  <select id="ath"></select>
+  
+  <div class="nav"><button id="prev">◀</button><div id="lbl"></div><button id="next">▶</button><button id="oggi">Oggi</button></div>
+  <div class="sp"></div>
+  <button data-v="day">Giorno</button><button data-v="week">Settimana</button><button data-v="month">Mese</button><button data-v="prog">📈 Progressi</button><button data-v="plan">📋 Scheda</button><button data-v="lib">📚 Esercizi</button>
+  <button id="bk" title="Salva/carica backup">💾</button>
+  <span id="who"></span>
+  <button id="addath" hidden>+ Atleta</button>
+  <button id="cl" title="Sincronizzazione online">☁</button>
+  <button id="inst" hidden>⬇ Installa</button>
+</header>
+<main id="main"></main>
+<div id="tm"><span id="tt">0:00</span><button data-t="30">0:30</button><button data-t="60">1'</button><button data-t="90">1:30</button><button data-t="120">2'</button><button data-t="180">3'</button><button data-x="1">⏹</button></div>
+<input type="file" id="file" accept=".json" hidden>
+<div id="lg" hidden>
+  <form id="lgf" class="lgc">
+    <h2>ZAMPA'S GYM Coach</h2>
+    <p>Accedi per sincronizzare gli allenamenti su tutti i dispositivi.</p>
+    <input id="lgm" type="email" autocomplete="username" placeholder="Email" required>
+    <input id="lgp" type="password" autocomplete="current-password" placeholder="Password" required>
+    <div id="lge"></div>
+    <button class="on" type="submit">Accedi</button>
+    <button type="button" id="lgr">Password dimenticata?</button>
+  </form>
+</div>
+<div id="na" hidden>
+  <form id="naf" class="lgc">
+    <h2>Nuovo atleta</h2>
+    <p>Crea l'account dell'atleta: potrà accedere con questa email e password e vedrà solo i suoi dati.</p>
+    <input id="nan" placeholder="Nome e cognome" autocomplete="off" required>
+    <input id="nae" type="email" placeholder="Email dell'atleta" autocomplete="off" required>
+    <input id="nap" type="text" placeholder="Password iniziale (min. 6 caratteri)" autocomplete="off" minlength="6" required>
+    <div id="nae2" style="color:#ff6b6b;min-height:20px;font-size:15px"></div>
+    <button class="on" type="submit">Crea atleta</button>
+    <button type="button" id="nax">Annulla</button>
+  </form>
+</div>
+<datalist id="mg"><option>Petto</option><option>Schiena</option><option>Spalle</option><option>Bicipiti</option><option>Tricipiti</option><option>Gambe</option><option>Glutei</option><option>Addome</option><option>Polpacci</option></datalist>
+<script>
+var KEY='gymcoach_v1',db={athletes:{},plans:{},lib:[],shared:[]},st={ath:'',date:'',view:'day',pd:(new Date().getDay()+6)%7,ex:''};
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x}
+function mon(d){var x=new Date(d);x.setDate(x.getDate()-((x.getDay()+6)%7));return x}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function fmt(d,o){return d.toLocaleDateString('it-IT',o)}
+
+st.date=iso(new Date());
+function save(skip){if(!skip&&window.cloud)cloud.mark()}
+function days(){return db.athletes[st.ath]||{}}
+function loc(){var a=st.ath,p=st.view==='plan',o;if(p){db.plans=db.plans||{};o=db.plans[a]=db.plans[a]||{}}else o=db.athletes[a]=db.athletes[a]||{};return [o,p?st.pd:st.date]}
+function ensure(){var l=loc();return l[0][l[1]]=l[0][l[1]]||[]}
+function get(){return st.view==='plan'?((db.plans||{})[st.ath]||{})[st.pd]||[]:days()[st.date]||[]}
+function hasPlan(){var p=((db.plans||{})[st.ath]||{})[(parse(st.date).getDay()+6)%7];return p&&p.length}
+function sz(t){t.style.height='auto';t.style.height=(t.scrollHeight+2)+'px'}
+function nm(x){return (x||'').trim().toLowerCase()}
+function ld(e){return Math.max(+e.kg||0,+e.m||0)}
+function pr(e){var n=nm(e.n),b=0,D=days();if(!n)return '';Object.keys(D).forEach(function(k){if(k<st.date)D[k].forEach(function(g){g.ex.forEach(function(x){if(nm(x.n)===n)b=Math.max(b,ld(x))})})});return b&&ld(e)>b?'🏆 PR':''}
+function series(n){var o=[],D=days();Object.keys(D).sort().forEach(function(k){var v=0;D[k].forEach(function(g){g.ex.forEach(function(x){if(nm(x.n)===nm(n))v=Math.max(v,ld(x))})});if(v)o.push([k,v])});return o}
+function chart(p){
+  if(!p.length)return '<div class="empty">Nessun dato per questo esercizio</div>';
+  var W=900,H=300,L=50,v=p.map(function(q){return q[1]}),mx=Math.max.apply(null,v),mn=Math.min.apply(null,v);
+  if(mx===mn){mx+=1;mn-=1}
+  var X=function(i){return p.length>1?L+i*(W-L-30)/(p.length-1):W/2},Y=function(z){return 250-(z-mn)*210/(mx-mn)};
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-height:62vh"><polyline fill="none" stroke-width="3" style="stroke:var(--acc)" points="'+p.map(function(q,i){return X(i)+','+Y(q[1])}).join(' ')+'"/>'+p.map(function(q,i){return '<circle r="6" cx="'+X(i)+'" cy="'+Y(q[1])+'" style="fill:var(--acc)"/><text x="'+X(i)+'" y="'+(Y(q[1])-14)+'" text-anchor="middle" font-size="16" style="fill:var(--txt)">'+q[1]+'</text><text x="'+X(i)+'" y="285" text-anchor="middle" font-size="14" style="fill:var(--mut)">'+q[0].slice(8)+'/'+q[0].slice(5,7)+'</text>'}).join('')+'</svg>';
+}
+function allLib(){return (db.lib||[]).concat(db.shared||[]).filter(function(x,i,a){return a.findIndex(function(y){return nm(y)===nm(x)})===i})}
+function pick(gi,ei){var L=allLib().sort(function(a,b){return a.localeCompare(b,'it')});if(!L.length)return '';return '<select class="sel" data-pick="'+gi+'_'+ei+'"><option value="">▾</option>'+L.map(function(n){return '<option>'+esc(n)+'</option>'}).join('')+'</select>'}
+function libView(){
+  var L=(db.lib||[]).slice().sort(function(a,b){return a.localeCompare(b,'it')});
+  return '<div class="stats" style="align-items:flex-start"><textarea id="ln" rows="4" placeholder="Scrivi un esercizio per riga" style="width:420px;max-width:100%;min-height:110px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--txt);font:inherit"></textarea><button class="on" data-act="addlib">+ Aggiungi</button><div class="st"><b>'+L.length+'</b><span>esercizi in elenco</span></div></div>'+(L.length?'<div class="cols" style="flex-wrap:wrap">'+L.map(function(n){return '<div class="st" style="display:flex;gap:10px;align-items:center">'+esc(n)+'<button class="x" data-act="dlib" data-n="'+esc(n)+'" style="padding:0 10px">✕</button></div>'}).join('')+'</div>':'<div class="empty">Nessun esercizio salvato</div>');
+}
+function progView(){
+  var D=days(),s={},ns;Object.keys(D).forEach(function(k){D[k].forEach(function(g){g.ex.forEach(function(x){if(x.n&&x.n.trim())s[x.n.trim()]=1})})});ns=Object.keys(s).sort();
+  if(!ns.length)return '<div class="empty">Registra qualche allenamento per vedere i progressi</div>';
+  if(ns.indexOf(st.ex)<0)st.ex=ns[0];
+  var p=series(st.ex),mx=p.length?Math.max.apply(null,p.map(function(q){return q[1]})):0,df=p.length>1?p[p.length-1][1]-p[0][1]:null;
+  return '<div class="stats"><select id="sx" style="font-size:20px;padding:10px;border-radius:10px;background:var(--card);color:var(--txt);border:1px solid var(--line)">'+ns.map(function(n){return '<option'+(n===st.ex?' selected':'')+'>'+esc(n)+'</option>'}).join('')+'</select><div class="st"><b>🏆 '+mx+' kg</b><span>record personale</span></div><div class="st"><b>'+p.length+'</b><span>sessioni</span></div><div class="st"><b>'+(df===null?'—':(df>=0?'+':'')+df+' kg')+'</b><span>dalla prima volta</span></div></div>'+chart(p.slice(-12));
+}
+function vol(g){return g.ex.reduce(function(a,e){return a+(+e.s||0)*(+e.r||0)*((+e.kg||0)+2*(+e.m||0))},0)}
+function dvol(gs){return gs.reduce(function(a,g){return a+vol(g)},0)}
+function kg(n){return Math.round(n).toLocaleString('it-IT')+' kg'}
+function head(){
+  var sel=document.getElementById('ath'),AT=window.ATHS||[];sel.innerHTML=AT.map(function(a){return '<option value="'+esc(a.id)+'">'+esc(a.name)+'</option>'}).join('');sel.disabled=!window.IS_ADMIN;
+  sel.value=st.ath;
+  document.querySelectorAll('[data-v]').forEach(function(b){b.classList.toggle('on',b.dataset.v===st.view)});
+  var d=parse(st.date),t;document.querySelector('.nav').style.visibility=(st.view==='plan'||st.view==='prog'||st.view==='lib')?'hidden':'visible';
+  if(st.view==='day')t=fmt(d,{weekday:'long',day:'numeric',month:'long'});
+  else if(st.view==='week'){var m=mon(d);t=fmt(m,{day:'numeric',month:'short'})+' – '+fmt(add(m,6),{day:'numeric',month:'short'})}
+  else if(st.view==='month')t=fmt(d,{month:'long',year:'numeric'});else t='';
+  document.getElementById('lbl').textContent=t;
+}
+function render(){
+  head();var M=document.getElementById('main');
+  if(!st.ath&&st.view!=='lib'){M.innerHTML='<div class="empty">👆 Nessun atleta selezionato</div>';return}
+  M.innerHTML=(st.view==='day'||st.view==='plan')?dayView():st.view==='week'?weekView():st.view==='prog'?progView():st.view==='lib'?libView():monthView();M.querySelectorAll('textarea').forEach(sz);
+}
+function dayView(){
+  var P=st.view==='plan',gs=get(),h=P?'<div class="stats">'+['Lun','Mar','Mer','Gio','Ven','Sab','Dom'].map(function(x,i){return '<button style="margin-right:6px" class="'+(i===st.pd?'on':'')+'" data-pd="'+i+'">'+x+'</button>'}).join('')+'</div>':'';h+='<div class="cols">';
+  gs.forEach(function(g,gi){
+    h+='<div class="g"><input class="t" list="mg" placeholder="Gruppo muscolare" value="'+esc(g.name)+'" data-g="'+gi+'" data-f="name">';
+    
+    g.ex.forEach(function(e,ei){
+      h+='<div class="e"><div class="nmw"><textarea rows="1" placeholder="Esercizio" data-g="'+gi+'" data-e="'+ei+'" data-f="n">'+esc(e.n)+'</textarea>'+pick(gi,ei)+'<span class="pr" id="p'+gi+'_'+ei+'">'+(P?'':pr(e))+'</span></div>'+
+      [['s','Serie'],['r','Rip.'],['kg','Kg bilanc.'],['m','Kg manubri']].map(function(q){var f=q[0];return '<label>'+q[1]+'<input type="number" inputmode="decimal" min="0" step="'+(f==='s'||f==='r'?'1':'0.5')+'" value="'+esc(e[f]==null?'':e[f])+'" data-g="'+gi+'" data-e="'+ei+'" data-f="'+f+'"></label>'}).join('')+
+      '<button class="x" data-act="dex" data-g="'+gi+'" data-e="'+ei+'">✕</button></div>';
+    });
+    h+='<button class="add" data-act="aex" data-g="'+gi+'">+ Esercizio</button>';
+    h+='<div class="vol">Volume: <b id="v'+gi+'">'+kg(vol(g))+'</b> · <a href="#" data-act="dg" data-g="'+gi+'" style="color:var(--mut)">elimina gruppo</a></div></div>';
+  });
+  h+='<button class="newg" data-act="ag">+ Gruppo muscolare</button></div>';
+  if(P)return h;if(!gs.length)h+='<div class="empty">Nessun allenamento registrato per questo giorno'+(hasPlan()?'<br><br><button data-act="plan" class="on">📋 Carica la scheda del giorno</button>':'')+'</div>';
+  else h+='<div class="stats"><div class="st"><b id="tv">'+kg(dvol(gs))+'</b><span>volume totale (serie × rip. × kg)</span></div></div>';
+  return h;
+}
+function weekView(){
+  var m=mon(parse(st.date)),h='<div class="week">',tot=0,n=0,D=days();
+  for(var i=0;i<7;i++){
+    var d=add(m,i),k=iso(d),gs=D[k]||[];
+    if(gs.length){n++;tot+=dvol(gs)}
+    h+='<div class="d'+(k===iso(new Date())?' tod':'')+'" data-go="'+k+'"><h3>'+fmt(d,{weekday:'short',day:'numeric'})+'</h3>';
+    h+=gs.map(function(g){return '<span class="tag">'+esc(g.name||'?')+' · '+g.ex.length+'</span>'}).join('')||'<small>Riposo</small>';
+    if(gs.length)h+='<small>'+kg(dvol(gs))+'</small>';
+    h+='</div>';
+  }
+  return '<div class="stats"><div class="st"><b>'+n+'</b><span>allenamenti</span></div><div class="st"><b>'+kg(tot)+'</b><span>volume settimana</span></div></div>'+h+'</div>';
+}
+function monthView(){
+  var c=parse(st.date),y=c.getFullYear(),mo=c.getMonth(),D=days(),n=0,tot=0,cnt={};
+  var last=new Date(y,mo+1,0).getDate(),lead=(new Date(y,mo,1).getDay()+6)%7,h='<div class="month">';
+  ['Lun','Mar','Mer','Gio','Ven','Sab','Dom'].forEach(function(x){h+='<div class="mh">'+x+'</div>'});
+  for(var i=0;i<lead;i++)h+='<div class="m z"></div>';
+  for(var d=1;d<=last;d++){
+    var k=iso(new Date(y,mo,d)),gs=D[k]||[];
+    if(gs.length){n++;tot+=dvol(gs);gs.forEach(function(g){var q=(g.name||'?').trim();cnt[q]=(cnt[q]||0)+1})}
+    h+='<div class="m'+(gs.length?' on':'')+'" data-go="'+k+'">'+d+(gs.length?'<b>'+gs.map(function(g){return esc((g.name||'?').slice(0,6))}).join(', ')+'</b>':'')+'</div>';
+  }
+  var top=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]}).slice(0,3).map(function(q){return q+' ('+cnt[q]+')'}).join(', ')||'—';
+  return '<div class="stats"><div class="st"><b>'+n+'</b><span>giorni di allenamento</span></div><div class="st"><b>'+kg(tot)+'</b><span>volume mese</span></div><div class="st"><b style="font-size:18px">'+esc(top)+'</b><span>gruppi più allenati</span></div></div>'+h+'</div>';
+}
+document.getElementById('main').addEventListener('input',function(ev){
+  var t=ev.target,f=t.dataset.f;if(!f)return;
+  var gs=ensure(),g=gs[+t.dataset.g];if(!g)return;
+  if(t.tagName==='TEXTAREA')sz(t);if(f==='name')g.name=t.value;else{g.ex[+t.dataset.e][f]=t.value;var pe=document.getElementById('p'+t.dataset.g+'_'+t.dataset.e);if(pe&&st.view!=='plan')pe.textContent=pr(g.ex[+t.dataset.e]);
+    var v=document.getElementById('v'+t.dataset.g);if(v)v.textContent=kg(vol(g));
+    var tv=document.getElementById('tv');if(tv)tv.textContent=kg(dvol(gs))}
+  save();
+});
+document.getElementById('main').addEventListener('click',function(ev){
+  var t=ev.target.closest('[data-act],[data-go],[data-pd]');if(!t)return;ev.preventDefault();if(t.dataset.pd){st.pd=+t.dataset.pd;render();return}
+  if(t.dataset.act==='addlib'){var ta=document.getElementById('ln');db.lib=db.lib||[];ta.value.split('\n').forEach(function(s){s=s.trim();if(s&&!db.lib.some(function(x){return nm(x)===nm(s)}))db.lib.push(s)});save();render();return}
+  if(t.dataset.act==='dlib'){db.lib=(db.lib||[]).filter(function(x){return x!==t.dataset.n});save();render();return}
+  if(t.dataset.go){st.date=t.dataset.go;st.view='day';render();return}
+  var gs=ensure(),g=gs[+t.dataset.g],a=t.dataset.act;
+  if(a==='plan')JSON.parse(JSON.stringify(((db.plans||{})[st.ath]||{})[(parse(st.date).getDay()+6)%7]||[])).forEach(function(x){gs.push(x)});if(a==='ag')gs.push({name:'',ex:[{n:'',s:'',r:'',kg:'',m:''}]});
+  if(a==='aex')g.ex.push({n:'',s:g.ex.length?g.ex[g.ex.length-1].s:'',r:'',kg:''});
+  if(a==='dex')g.ex.splice(+t.dataset.e,1);
+  if(a==='dg'&&confirm('Eliminare questo gruppo muscolare?'))gs.splice(+t.dataset.g,1);
+  if(!gs.length){var l=loc();delete l[0][l[1]]}
+  save();render();
+});
+document.getElementById('main').addEventListener('change',function(ev){if(ev.target.id==='sx'){st.ex=ev.target.value;render()}if(ev.target.dataset.f==='n'){var s=ev.target.value.trim();db.lib=db.lib||[];if(s&&!allLib().some(function(x){return nm(x)===nm(s)})){db.lib.push(s);save()}}var pk=ev.target.dataset.pick;if(pk&&ev.target.value){var q=pk.split('_'),gg=ensure()[+q[0]];if(gg){gg.ex[+q[1]].n=ev.target.value;save()}render()}});
+document.getElementById('ath').addEventListener('change',function(){if(window.cloud&&cloud.select)cloud.select(this.value)});
+function step(n){
+  var d=parse(st.date);
+  if(st.view==='day')d=add(d,n);else if(st.view==='week')d=add(d,7*n);else d=new Date(d.getFullYear(),d.getMonth()+n,1);
+  st.date=iso(d);render();
+}
+document.getElementById('prev').onclick=function(){step(-1)};
+document.getElementById('next').onclick=function(){step(1)};
+document.getElementById('oggi').onclick=function(){st.date=iso(new Date());render()};
+document.querySelectorAll('[data-v]').forEach(function(b){b.onclick=function(){st.view=b.dataset.v;render()}});
+var tI=0,tL=0,tm=document.getElementById('tm'),tt=document.getElementById('tt');
+function showT(){tt.textContent=Math.floor(tL/60)+':'+String(tL%60).padStart(2,'0');tm.className=tI?'run':''}
+function stopT(){clearInterval(tI);tI=0}
+function beep(){try{var c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator();o.connect(c.destination);o.frequency.value=880;o.start();setTimeout(function(){o.stop()},900)}catch(e){}try{navigator.vibrate&&navigator.vibrate([300,100,300])}catch(e){}}
+function startT(s){stopT();tL=s;tI=setInterval(function(){tL--;if(tL<=0){tL=0;stopT();showT();tm.classList.add('end');beep();return}showT()},1000);showT()}
+tm.onclick=function(ev){var b=ev.target.closest('button');if(!b)return;if(b.dataset.t)startT(+b.dataset.t);else{stopT();tL=0;showT()}};
+document.getElementById('bk').onclick=function(){
+  if(confirm('Scaricare un file di backup dei dati di questo atleta?')){
+    var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(db)],{type:'application/json'}));a.download='gymlog-backup-'+iso(new Date())+'.json';a.click();
+  }
+};
+document.getElementById('file').onchange=function(){
+  var f=this.files[0];if(!f)return;var r=new FileReader();
+  r.onload=function(){try{var o=JSON.parse(r.result);if(o.athletes){db=o;save();render();if(window.cloud)cloud.pushAll()}}catch(e){alert('File non valido')}};r.readAsText(f);
+};
+var dp=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;document.getElementById('inst').hidden=false});
+document.getElementById('inst').onclick=function(){if(dp){dp.prompt();dp=null;this.hidden=true}};
+window.addEventListener('appinstalled',function(){document.getElementById('inst').hidden=true});
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0)navigator.serviceWorker.register('sw.js').catch(function(){});
+render();
+</script>
+<script src="firebase-config.js"></script>
+<script type="module" src="cloud.js"></script>
+</body>
+</html>
