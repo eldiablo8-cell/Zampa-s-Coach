@@ -34,7 +34,13 @@ main{flex:1;overflow:auto;padding:14px 16px 90px}
 .cols{display:flex;gap:14px;align-items:flex-start;overflow-x:auto;padding-bottom:10px}
 .g{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;min-width:400px;width:400px;flex:none}
 .g .t{width:100%;font-size:20px;font-weight:800;color:var(--acc);background:transparent;border:none;border-bottom:2px solid var(--line);border-radius:0;padding:6px 2px;margin-bottom:8px}
-.e{display:grid;grid-template-columns:repeat(4,1fr) 40px;gap:6px;align-items:end;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.e{padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.sr,.sh{display:grid;grid-template-columns:28px repeat(3,1fr) 36px;gap:6px;align-items:center;margin-top:6px}
+.sh{font-size:10px;color:var(--mut);text-transform:uppercase;text-align:center;margin-top:10px}
+.sn{width:26px;height:26px;border-radius:13px;background:var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.sr .x{width:100%}.nmw .x{width:36px;flex:none}
+.adds{width:100%;margin-top:8px;border-style:dashed;color:var(--mut);min-height:42px;font-size:15px}
+.note{display:block;margin-top:10px}.note input{text-align:left;font-size:16px;margin-top:3px}
 .e label{font-size:11px;color:var(--mut);text-transform:uppercase}
 .nmw{grid-column:1/-1;display:flex;gap:6px;align-items:flex-start}.nmw textarea{flex:1;resize:none;overflow:hidden;font-size:18px;font-weight:600;line-height:1.25}.pr{color:var(--ok);font-weight:800;white-space:nowrap;padding-top:8px}.sel{-webkit-appearance:none;appearance:none;text-align:center;text-align-last:center;padding:0;width:46px;min-height:42px;border-radius:10px;background:var(--bg);color:var(--txt);border:1px solid var(--line);font-size:18px}
 .e input{padding:8px 4px;text-align:center;width:100%;font-size:18px}.e textarea{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;color:var(--txt);font-family:inherit}.e textarea:focus{outline:2px solid var(--acc)}
@@ -60,7 +66,7 @@ main{flex:1;overflow:auto;padding:14px 16px 90px}
 .st{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 16px}
 .st b{display:block;font-size:24px;color:var(--acc)}
 .st span{font-size:13px;color:var(--mut)}
-@media(max-width:700px){body{font-size:16px}header{gap:8px;padding:8px 10px}h1{font-size:18px;width:100%}#ath{width:100%}.nav{width:100%;justify-content:space-between}#lbl{min-width:0;flex:1}header>button{flex:1;padding:8px 6px;min-height:42px}.sp{display:none}main{padding:10px 10px 90px}.cols{flex-direction:column;overflow-x:visible}.g,.newg{width:100%;min-width:0}.newg{height:70px}.week{grid-template-columns:1fr 1fr}.d{min-height:120px}.m{min-height:52px;padding:3px;font-size:13px}.m b{display:none}.e{gap:4px;grid-template-columns:repeat(4,1fr) 34px}.e input{font-size:16px;padding:8px 2px}.e label{font-size:10px}#tm{left:10px;right:10px;justify-content:space-between;padding:6px}#tt{font-size:22px;min-width:60px}#tm button{padding:6px 8px}}
+@media(max-width:700px){body{font-size:16px}header{gap:8px;padding:8px 10px}h1{font-size:18px;width:100%}#ath{width:100%}.nav{width:100%;justify-content:space-between}#lbl{min-width:0;flex:1}header>button{flex:1;padding:8px 6px;min-height:42px}.sp{display:none}main{padding:10px 10px 90px}.cols{flex-direction:column;overflow-x:visible}.g,.newg{width:100%;min-width:0}.newg{height:70px}.week{grid-template-columns:1fr 1fr}.d{min-height:120px}.m{min-height:52px;padding:3px;font-size:13px}.m b{display:none}.sr,.sh{gap:4px;grid-template-columns:24px repeat(3,1fr) 32px}.e input{font-size:16px;padding:8px 2px}.e label{font-size:10px}#tm{left:10px;right:10px;justify-content:space-between;padding:6px}#tt{font-size:22px;min-width:60px}#tm button{padding:6px 8px}}
 #lg,#na{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
 #lg[hidden],#na[hidden]{display:none}
 #who{font-weight:700;color:var(--acc);white-space:nowrap}
@@ -108,7 +114,7 @@ main{flex:1;overflow:auto;padding:14px 16px 90px}
     <button type="button" id="nax">Annulla</button>
   </form>
 </div>
-<datalist id="mg"><option>Petto</option><option>Schiena</option><option>Spalle</option><option>Bicipiti</option><option>Tricipiti</option><option>Gambe</option><option>Glutei</option><option>Addome</option><option>Polpacci</option></datalist>
+<datalist id="mg"><option>Petto</option><option>Schiena</option><option>Spalle</option><option>Bicipiti</option><option>Tricipiti</option><option>Gambe</option><option>Glutei</option><option>Addome</option><option>Core</option><option>Polpacci</option></datalist>
 <script>
 var KEY='gymcoach_v1',db={athletes:{},plans:{},lib:[],shared:[]},st={ath:'',date:'',view:'day',pd:(new Date().getDay()+6)%7,ex:''};
 function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
@@ -127,7 +133,7 @@ function get(){return st.view==='plan'?((db.plans||{})[st.ath]||{})[st.pd]||[]:d
 function hasPlan(){var p=((db.plans||{})[st.ath]||{})[(parse(st.date).getDay()+6)%7];return p&&p.length}
 function sz(t){t.style.height='auto';t.style.height=(t.scrollHeight+2)+'px'}
 function nm(x){return (x||'').trim().toLowerCase()}
-function ld(e){return Math.max(+e.kg||0,+e.m||0)}
+function ld(e){return (e.sets||[]).reduce(function(b,q){return Math.max(b,+q.kg||0,+q.m||0)},0)}
 function pr(e){var n=nm(e.n),b=0,D=days();if(!n)return '';Object.keys(D).forEach(function(k){if(k<st.date)D[k].forEach(function(g){g.ex.forEach(function(x){if(nm(x.n)===n)b=Math.max(b,ld(x))})})});return b&&ld(e)>b?'🏆 PR':''}
 function series(n){var o=[],D=days();Object.keys(D).sort().forEach(function(k){var v=0;D[k].forEach(function(g){g.ex.forEach(function(x){if(nm(x.n)===nm(n))v=Math.max(v,ld(x))})});if(v)o.push([k,v])});return o}
 function chart(p){
@@ -150,7 +156,20 @@ function progView(){
   var p=series(st.ex),mx=p.length?Math.max.apply(null,p.map(function(q){return q[1]})):0,df=p.length>1?p[p.length-1][1]-p[0][1]:null;
   return '<div class="stats"><select id="sx" style="font-size:20px;padding:10px;border-radius:10px;background:var(--card);color:var(--txt);border:1px solid var(--line)">'+ns.map(function(n){return '<option'+(n===st.ex?' selected':'')+'>'+esc(n)+'</option>'}).join('')+'</select><div class="st"><b>🏆 '+mx+' kg</b><span>record personale</span></div><div class="st"><b>'+p.length+'</b><span>sessioni</span></div><div class="st"><b>'+(df===null?'—':(df>=0?'+':'')+df+' kg')+'</b><span>dalla prima volta</span></div></div>'+chart(p.slice(-12));
 }
-function vol(g){return g.ex.reduce(function(a,e){return a+(+e.s||0)*(+e.r||0)*((+e.kg||0)+2*(+e.m||0))},0)}
+function vol(g){return g.ex.reduce(function(a,e){return a+(e.sets||[]).reduce(function(b,q){return b+(+q.r||0)*((+q.kg||0)+2*(+q.m||0))},0)},0)}
+function mkSet(){return {r:'',kg:'',m:''}}
+function fixEx(e){
+  if(!Array.isArray(e.sets)){
+    var n=Math.min(20,Math.max(1,parseInt(e.s)||1)),a=[];
+    for(var i=0;i<n;i++)a.push({r:e.r==null?'':e.r,kg:e.kg==null?'':e.kg,m:e.m==null?'':e.m});
+    e.sets=a;delete e.s;delete e.r;delete e.kg;delete e.m;
+  }
+  if(e.note==null)e.note='';
+}
+function fixAll(){
+  var D=days(),P=((db.plans||{})[st.ath])||{};
+  [D,P].forEach(function(o){Object.keys(o).forEach(function(k){(o[k]||[]).forEach(function(g){(g.ex||[]).forEach(fixEx)})})});
+}
 function dvol(gs){return gs.reduce(function(a,g){return a+vol(g)},0)}
 function kg(n){return Math.round(n).toLocaleString('it-IT')+' kg'}
 function head(){
@@ -164,7 +183,7 @@ function head(){
   document.getElementById('lbl').textContent=t;
 }
 function render(){
-  head();var M=document.getElementById('main');
+  fixAll();head();var M=document.getElementById('main');
   if(!st.ath&&st.view!=='lib'){M.innerHTML='<div class="empty">👆 Nessun atleta selezionato</div>';return}
   M.innerHTML=(st.view==='day'||st.view==='plan')?dayView():st.view==='week'?weekView():st.view==='prog'?progView():st.view==='lib'?libView():monthView();M.querySelectorAll('textarea').forEach(sz);
 }
@@ -174,9 +193,15 @@ function dayView(){
     h+='<div class="g"><input class="t" list="mg" placeholder="Gruppo muscolare" value="'+esc(g.name)+'" data-g="'+gi+'" data-f="name">';
     
     g.ex.forEach(function(e,ei){
-      h+='<div class="e"><div class="nmw"><textarea rows="1" placeholder="Esercizio" data-g="'+gi+'" data-e="'+ei+'" data-f="n">'+esc(e.n)+'</textarea>'+pick(gi,ei)+'<span class="pr" id="p'+gi+'_'+ei+'">'+(P?'':pr(e))+'</span></div>'+
-      [['s','Serie'],['r','Rip.'],['kg','Kg bilanc.'],['m','Kg manubri']].map(function(q){var f=q[0];return '<label>'+q[1]+'<input type="number" inputmode="decimal" min="0" step="'+(f==='s'||f==='r'?'1':'0.5')+'" value="'+esc(e[f]==null?'':e[f])+'" data-g="'+gi+'" data-e="'+ei+'" data-f="'+f+'"></label>'}).join('')+
-      '<button class="x" data-act="dex" data-g="'+gi+'" data-e="'+ei+'">✕</button></div>';
+      h+='<div class="e"><div class="nmw"><textarea rows="1" placeholder="Esercizio" data-g="'+gi+'" data-e="'+ei+'" data-f="n">'+esc(e.n)+'</textarea>'+pick(gi,ei)+'<span class="pr" id="p'+gi+'_'+ei+'">'+(P?'':pr(e))+'</span><button class="x" data-act="dex" data-g="'+gi+'" data-e="'+ei+'" aria-label="Elimina esercizio">✕</button></div>';
+      h+='<div class="sh"><span></span><span>Rip.</span><span>Kg bilanc.</span><span>Kg manubri</span><span></span></div>';
+      e.sets.forEach(function(q,si){
+        h+='<div class="sr"><div class="sn">'+(si+1)+'</div>'+
+        [['r','Ripetizioni','1'],['kg','Kg bilanciere','0.5'],['m','Kg manubri','0.5']].map(function(f){return '<input type="number" inputmode="decimal" min="0" step="'+f[2]+'" aria-label="'+f[1]+'" placeholder="–" value="'+esc(q[f[0]]==null?'':q[f[0]])+'" data-g="'+gi+'" data-e="'+ei+'" data-s="'+si+'" data-f="'+f[0]+'">'}).join('')+
+        '<button class="x" data-act="dset" data-g="'+gi+'" data-e="'+ei+'" data-s="'+si+'" aria-label="Elimina serie">✕</button></div>';
+      });
+      h+='<button class="adds" data-act="ads" data-g="'+gi+'" data-e="'+ei+'">+ Serie</button>';
+      h+='<label class="note">Note<input type="text" placeholder="Es. molle: 1 rossa + 1 blu" value="'+esc(e.note||'')+'" data-g="'+gi+'" data-e="'+ei+'" data-f="note"></label></div>';
     });
     h+='<button class="add" data-act="aex" data-g="'+gi+'">+ Esercizio</button>';
     h+='<div class="vol">Volume: <b id="v'+gi+'">'+kg(vol(g))+'</b> · <a href="#" data-act="dg" data-g="'+gi+'" style="color:var(--mut)">elimina gruppo</a></div></div>';
@@ -214,7 +239,7 @@ function monthView(){
 document.getElementById('main').addEventListener('input',function(ev){
   var t=ev.target,f=t.dataset.f;if(!f)return;
   var gs=ensure(),g=gs[+t.dataset.g];if(!g)return;
-  if(t.tagName==='TEXTAREA')sz(t);if(f==='name')g.name=t.value;else{g.ex[+t.dataset.e][f]=t.value;var pe=document.getElementById('p'+t.dataset.g+'_'+t.dataset.e);if(pe&&st.view!=='plan')pe.textContent=pr(g.ex[+t.dataset.e]);
+  if(t.tagName==='TEXTAREA')sz(t);if(f==='name')g.name=t.value;else{var ex=g.ex[+t.dataset.e];if(t.dataset.s!==undefined)ex.sets[+t.dataset.s][f]=t.value;else ex[f]=t.value;var pe=document.getElementById('p'+t.dataset.g+'_'+t.dataset.e);if(pe&&st.view!=='plan')pe.textContent=pr(g.ex[+t.dataset.e]);
     var v=document.getElementById('v'+t.dataset.g);if(v)v.textContent=kg(vol(g));
     var tv=document.getElementById('tv');if(tv)tv.textContent=kg(dvol(gs))}
   save();
@@ -225,8 +250,8 @@ document.getElementById('main').addEventListener('click',function(ev){
   if(t.dataset.act==='dlib'){db.lib=(db.lib||[]).filter(function(x){return x!==t.dataset.n});save();render();return}
   if(t.dataset.go){st.date=t.dataset.go;st.view='day';render();return}
   var gs=ensure(),g=gs[+t.dataset.g],a=t.dataset.act;
-  if(a==='plan')JSON.parse(JSON.stringify(((db.plans||{})[st.ath]||{})[(parse(st.date).getDay()+6)%7]||[])).forEach(function(x){gs.push(x)});if(a==='ag')gs.push({name:'',ex:[{n:'',s:'',r:'',kg:'',m:''}]});
-  if(a==='aex')g.ex.push({n:'',s:g.ex.length?g.ex[g.ex.length-1].s:'',r:'',kg:''});
+  if(a==='plan')JSON.parse(JSON.stringify(((db.plans||{})[st.ath]||{})[(parse(st.date).getDay()+6)%7]||[])).forEach(function(x){gs.push(x)});if(a==='ag')gs.push({name:'',ex:[{n:'',sets:[mkSet()],note:''}]});
+  if(a==='aex')g.ex.push({n:'',sets:[mkSet()],note:''});if(a==='ads')g.ex[+t.dataset.e].sets.push(mkSet());if(a==='dset'){var ss=g.ex[+t.dataset.e].sets;ss.splice(+t.dataset.s,1);if(!ss.length)ss.push(mkSet())}
   if(a==='dex')g.ex.splice(+t.dataset.e,1);
   if(a==='dg'&&confirm('Eliminare questo gruppo muscolare?'))gs.splice(+t.dataset.g,1);
   if(!gs.length){var l=loc();delete l[0][l[1]]}

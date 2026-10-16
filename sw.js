@@ -1,5 +1,5 @@
 // Service worker di ZAMPA'S GYM Coach: prima la rete (aggiornamenti subito), poi la copia salvata (funziona offline)
-var CACHE = 'zampas-coach-v1';
+var CACHE = 'zampas-coach-v2';
 var FILES = ['./', './index.html', './cloud.js', './firebase-config.js', './manifest.json', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {
