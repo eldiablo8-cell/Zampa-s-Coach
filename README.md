@@ -6,6 +6,7 @@ Come ZAMPA'S GYM, ma con **un account coach** (allenatore) e **un account per og
 - **Atleta:** accede con la propria email e password, vede e modifica **solo i propri dati**. Non vede gli altri atleti.
 - Elenco esercizi: quello del coach è condiviso con tutti (gli atleti lo usano nella tendina ▾), e ogni atleta ha anche il proprio elenco personale.
 - Ogni esercizio ha più righe di serie, ciascuna con le proprie ripetizioni, kg bilanciere e kg manubri (pulsante **+ Serie**), e un campo **Note** libero (per esempio il colore delle molle del reformer). Gruppo muscolare **Core** disponibile.
+- Impaginazione pensata per il tablet in orizzontale: tutto sta nella larghezza dello schermo, gruppi ed esercizi si aggiungono uno sotto l'altro e si scorre solo in verticale (su telefono in verticale le colonne dell'esercizio si impilano).
 
 Questa versione è **separata** dall'originale: repository GitHub diverso, progetto Firebase diverso, dati diversi.
 
